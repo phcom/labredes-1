@@ -53,18 +53,22 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists
     
 RUN wget http://ftp.us.debian.org/debian/pool/non-free/d/dynamips/dynamips_0.2.14-1_amd64.deb
-RUN dpkg -i dynamips_0.2.14-1_amd64.deb
+RUN dpkg -i dynamips_0.2.14-1_amd64.deb && \
+    rm dynamips_0.2.14-1_amd64.deb
 
 RUN git clone https://github.com/GNS3/ubridge.git && \
     cd ubridge && \
     make && \
     make install && \
-    cd ../
+    cd ../ && \
+    rm -rf ubridge
     
 RUN git clone https://github.com/GNS3/vpcs && \
     cd vpcs/src && \
     ./mk.sh && \
-    cp vpcs /usr/local/bin
+    cp vpcs /usr/local/bin && \
+    cd ../ && \
+    rm -rf vpcs
     
 RUN python3 -m venv /usr/local/gns3env
 ENV PATH="/usr/local/gns3env/bin":$PATH
