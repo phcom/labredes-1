@@ -6,6 +6,10 @@ Para construir uma imagem, executar:
 
 - podman build -t labredes .
 
+Para listar imagens instaladas:
+
+- podman image ls
+
 Para remover a imagem (forçadamente):
 
 - podman rmi labredes --force
@@ -48,6 +52,6 @@ Executar as intâncias em terminais separados na máquina *host*. Isso deve ser 
 
 - podman run --cap-add NET_ADMIN --privileged --network lab -p 8080:8080 labredes
 - podman run --cap-add NET_ADMIN --privileged --network lab -p 8081:8080 labredes
-- podman run --cap-add NET_ADMIN --privileged --network lab -p 8083:8080 labredes
+- podman run --cap-add NET_ADMIN --privileged --network lab -p 8082:8080 labredes
 
 Abrir um browser no *host* e acessar as URL "localhost:8080", "localhost:8081" ... para acessar cada container.
