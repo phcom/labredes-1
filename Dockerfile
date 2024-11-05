@@ -85,8 +85,12 @@ RUN git clone https://github.com/GNS3/vpcs && \
 RUN python3 -m venv /usr/local/gns3env
 ENV PATH="/usr/local/gns3env/bin":$PATH
 
-RUN pip install pyqt5 && \
-    pip install gns3-server && \
+# Install PyQt5 using apt
+RUN apt-get update && \
+    apt-get install -y python3-pyqt5
+
+# Install GNS3 packages
+RUN pip install gns3-server && \
     pip install gns3-gui
 
 COPY --from=easy-novnc-build /bin/easy-novnc /usr/local/bin/
